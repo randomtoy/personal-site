@@ -17,7 +17,6 @@ on:
   workflow_run:
     workflows: ["Release"]
     types: [completed]
-    branches: [main]
 
 concurrency:
   group: deploy-personal-site-${{ github.event.inputs.environment || 'prod' }}
