@@ -69,13 +69,13 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p ${{ secrets.SSH_PORT || 22 }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
+          ssh-keyscan -p ${{ vars.SSH_PORT || 22 }} ${{ vars.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
 
       - name: Start SSH tunnel
         run: |
-          K8S_API_HOST="${{ secrets.K8S_API_HOST || '127.0.0.1' }}"
-          K8S_API_PORT="${{ secrets.K8S_API_PORT || '6443' }}"
-          SSH_PORT="${{ secrets.SSH_PORT || '22' }}"
+          K8S_API_HOST="${{ vars.K8S_API_HOST || '127.0.0.1' }}"
+          K8S_API_PORT="${{ vars.K8S_API_PORT || '6443' }}"
+          SSH_PORT="${{ vars.SSH_PORT || '22' }}"
 
           ssh -o StrictHostKeyChecking=no \
               -o UserKnownHostsFile=/dev/null \
@@ -87,7 +87,7 @@ jobs:
               -N \
               -L ${{ env.LOCAL_PORT }}:${K8S_API_HOST}:${K8S_API_PORT} \
               -p ${SSH_PORT} \
-              ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} &
+              ${{ vars.SSH_USER }}@${{ vars.SSH_HOST }} &
 
           SSH_PID=$!
           echo "SSH_PID=${SSH_PID}" >> "$GITHUB_ENV"
@@ -119,7 +119,7 @@ jobs:
 
       - name: Create namespace
         run: |
-          NAMESPACE="${{ secrets.HELM_NAMESPACE || 'personal-site' }}"
+          NAMESPACE="${{ vars.HELM_NAMESPACE || 'personal-site' }}"
           kubectl create namespace "${NAMESPACE}" --dry-run=client -o yaml | kubectl apply -f -
 
       - name: Lint Helm chart
@@ -134,8 +134,8 @@ jobs:
 
       - name: Deploy with Helm
         run: |
-          RELEASE="${{ secrets.HELM_RELEASE_NAME || 'personal-site' }}"
-          NAMESPACE="${{ secrets.HELM_NAMESPACE || 'personal-site' }}"
+          RELEASE="${{ vars.HELM_RELEASE_NAME || 'personal-site' }}"
+          NAMESPACE="${{ vars.HELM_NAMESPACE || 'personal-site' }}"
           IMAGE_TAG="${{ steps.image-tag.outputs.tag }}"
 
           HELM_CMD="helm upgrade --install ${RELEASE} deploy/helm/personal-site \
@@ -154,8 +154,8 @@ jobs:
 
       - name: Verify deployment
         run: |
-          RELEASE="${{ secrets.HELM_RELEASE_NAME || 'personal-site' }}"
-          NAMESPACE="${{ secrets.HELM_NAMESPACE || 'personal-site' }}"
+          RELEASE="${{ vars.HELM_RELEASE_NAME || 'personal-site' }}"
+          NAMESPACE="${{ vars.HELM_NAMESPACE || 'personal-site' }}"
 
           kubectl rollout status deployment/${RELEASE} -n ${NAMESPACE} --timeout=120s
           echo "---"
