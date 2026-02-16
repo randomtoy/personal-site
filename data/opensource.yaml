@@ -1,0 +1,47 @@
+- name: "radiomap-backend"
+  description: "Backend API for RadioMap — geospatial radio station discovery service."
+  url: "https://github.com/randomtoy/radiomap-backend"
+  language: "Go"
+  languageColor: "#00ADD8"
+  stars: 0
+  forks: 0
+
+- name: "radiobrowser-go"
+  description: "Go client library for the RadioBrowser community API."
+  url: "https://github.com/randomtoy/radiobrowser-go"
+  language: "Go"
+  languageColor: "#00ADD8"
+  stars: 0
+  forks: 0
+
+- name: "koshabot-go"
+  description: "Telegram bot for household management and task automation."
+  url: "https://github.com/randomtoy/koshabot-go"
+  language: "Go"
+  languageColor: "#00ADD8"
+  stars: 0
+  forks: 0
+
+- name: "badgesgenerator"
+  description: "Dynamic SVG badge generation service for documentation."
+  url: "https://github.com/randomtoy/badgesgenerator"
+  language: "Go"
+  languageColor: "#00ADD8"
+  stars: 0
+  forks: 0
+
+- name: "magic-ball-as-a-service"
+  description: "Magic 8-Ball predictions via REST API — cloud-native demo."
+  url: "https://github.com/randomtoy/magic-ball-as-a-service"
+  language: "Go"
+  languageColor: "#00ADD8"
+  stars: 0
+  forks: 0
+
+- name: "personal-site"
+  description: "This portfolio website — Hugo + TailwindCSS, deployed to GitHub Pages."
+  url: "https://github.com/randomtoy/personal-site"
+  language: "HTML"
+  languageColor: "#e34c26"
+  stars: 0
+  forks: 0

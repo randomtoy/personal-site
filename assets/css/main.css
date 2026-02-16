@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  /* Exact colors from Playwright measurements */
+  --color-bg: #0e1215;
+  --color-bg-card: #151a1e;
+  --color-bg-card-hover: rgba(30, 36, 41, 0.3);
+  --color-border: #272e35;
+  --color-border-hover: rgba(64, 191, 174, 0.3);
+  --color-text: #e0e6eb;
+  --color-text-muted: #73808c;
+  --color-primary: #40bfae;
+  --color-primary-fg: #0e1215;
+  --color-secondary: #1e2429;
+  --color-secondary-50: rgba(30, 36, 41, 0.5);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 3.5rem;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(64, 191, 174, 0.2);
+  color: var(--color-text);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Section fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+/* Active nav link */
+.nav-link.active {
+  color: var(--color-primary);
+}
+
+/* Header scroll state — toggled via JS */
+.header-scrolled {
+  background-color: rgba(14, 18, 21, 0.8) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border-bottom-color: var(--color-border) !important;
+}
+
+/* Particle canvas */
+.particle-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}

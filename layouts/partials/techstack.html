@@ -1,0 +1,18 @@
+<section id="stack" class="section-animate py-24">
+  <div class="mx-auto max-w-6xl px-6">
+    {{ partial "section-header.html" (dict "number" "03" "title" "Tech Stack") }}
+
+    <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {{ range .Site.Data.techstack }}
+      <div>
+        <h3 class="mb-4 font-mono text-xs uppercase tracking-wider text-[var(--color-text-muted)]">{{ .category }}</h3>
+        <div class="flex flex-wrap gap-2">
+          {{ range .items }}
+          <span class="rounded-sm border border-[var(--color-border)] bg-[var(--color-bg-card)] px-3 py-1.5 font-mono text-xs text-[var(--color-text)] transition-colors hover:border-[var(--color-border-hover)] hover:text-[var(--color-primary)]">{{ . }}</span>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

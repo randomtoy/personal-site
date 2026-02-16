@@ -1,0 +1,6 @@
+{{/* Usage: {{ partial "section-header.html" (dict "number" "01" "title" "Featured Projects") }} */}}
+<div class="flex items-center gap-4">
+  <span class="font-mono text-sm text-[var(--color-primary)]">{{ .number }}</span>
+  <h2 class="text-2xl font-bold tracking-tight whitespace-nowrap">{{ .title }}</h2>
+  <div class="h-px flex-1 bg-[var(--color-border)]"></div>
+</div>

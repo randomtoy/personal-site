@@ -1,0 +1,15 @@
+{
+  "name": "personal-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "hugo server -D",
+    "build": "hugo --minify",
+    "css:dev": "npx @tailwindcss/cli -i ./assets/css/main.css -o ./assets/css/compiled.css --watch",
+    "css:build": "npx @tailwindcss/cli -i ./assets/css/main.css -o ./assets/css/compiled.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.0",
+    "tailwindcss": "^4.1.0"
+  }
+}

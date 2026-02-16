@@ -1,0 +1,25 @@
+name: "Yuri Sergeev"
+role: "DevOps / SRE Engineer"
+badge: "Available for opportunities"
+description: >-
+  Experienced DevOps and SRE Engineer specializing in cloud infrastructure,
+  Kubernetes orchestration, and building reliable CI/CD pipelines. Passionate
+  about virtualization (KVM/QEMU), GPU computing, and infrastructure automation
+  at scale.
+summary: >-
+  I design and operate production infrastructure with a focus on reliability,
+  observability, and developer experience. From bare-metal GPU clusters to
+  cloud-native microservices — I build systems that scale.
+
+links:
+  github: "https://github.com/randomtoy"  # UPDATE: your GitHub username
+  linkedin: "https://linkedin.com/in/your-profile"  # UPDATE: your LinkedIn URL
+  email: "hello@example.com"  # UPDATE: your contact email
+
+contact:
+  formEndpoint: ""  # Set to Formspree or similar endpoint, e.g. "https://formspree.io/f/xxxxx"
+  heading: "Get In Touch"
+  description: >-
+    Have a project in mind or want to discuss infrastructure challenges?
+    I'd love to hear from you. Drop me a message and I'll get back to you
+    as soon as possible.

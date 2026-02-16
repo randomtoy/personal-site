@@ -1,0 +1,172 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Deployment environment"
+        required: true
+        type: choice
+        options:
+          - prod
+        default: prod
+      image_tag:
+        description: "Image tag to deploy (e.g. 1.0.0 or commit SHA)"
+        required: true
+        type: string
+  workflow_run:
+    workflows: ["Release"]
+    types: [completed]
+    branches: [main]
+
+concurrency:
+  group: deploy-personal-site-${{ github.event.inputs.environment || 'prod' }}
+  cancel-in-progress: false
+
+env:
+  HELM_VERSION: v3.14.0
+  KUBECTL_VERSION: v1.29.0
+  LOCAL_PORT: "16443"
+
+jobs:
+  deploy:
+    name: Deploy to k3s
+    runs-on: ubuntu-latest
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+    environment: ${{ github.event.inputs.environment || 'prod' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Determine image tag
+        id: image-tag
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "tag=${{ github.event.inputs.image_tag }}" >> "$GITHUB_OUTPUT"
+          else
+            TAG="${GITHUB_REF_NAME#v}"
+            if [ "$TAG" = "$GITHUB_REF_NAME" ]; then
+              TAG="${GITHUB_SHA::8}"
+            fi
+            echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          fi
+          echo "Image tag: $(cat "$GITHUB_OUTPUT" | grep tag | cut -d= -f2)"
+
+      - name: Install kubectl
+        run: |
+          curl -LO "https://dl.k8s.io/release/${{ env.KUBECTL_VERSION }}/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/
+
+      - name: Setup Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: ${{ env.HELM_VERSION }}
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p ${{ secrets.SSH_PORT || 22 }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      - name: Start SSH tunnel
+        run: |
+          K8S_API_HOST="${{ secrets.K8S_API_HOST || '127.0.0.1' }}"
+          K8S_API_PORT="${{ secrets.K8S_API_PORT || '6443' }}"
+          SSH_PORT="${{ secrets.SSH_PORT || '22' }}"
+
+          ssh -o StrictHostKeyChecking=no \
+              -o UserKnownHostsFile=/dev/null \
+              -o ServerAliveInterval=30 \
+              -o ServerAliveCountMax=3 \
+              -o ExitOnForwardFailure=yes \
+              -o LogLevel=ERROR \
+              -i ~/.ssh/deploy_key \
+              -N \
+              -L ${{ env.LOCAL_PORT }}:${K8S_API_HOST}:${K8S_API_PORT} \
+              -p ${SSH_PORT} \
+              ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} &
+
+          SSH_PID=$!
+          echo "SSH_PID=${SSH_PID}" >> "$GITHUB_ENV"
+
+          echo "Waiting for SSH tunnel..."
+          for i in $(seq 1 30); do
+            if nc -z 127.0.0.1 ${{ env.LOCAL_PORT }} 2>/dev/null; then
+              echo "Tunnel established on port ${{ env.LOCAL_PORT }}"
+              break
+            fi
+            if [ $i -eq 30 ]; then
+              echo "ERROR: Tunnel failed to establish within 30 seconds"
+              exit 1
+            fi
+            sleep 1
+          done
+
+      - name: Setup kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG_B64 }}" | base64 -d > ~/.kube/config
+          chmod 600 ~/.kube/config
+          sed -E -i "s|(server: https?://)[^:]+:[0-9]+|\1127.0.0.1:${{ env.LOCAL_PORT }}|g" ~/.kube/config
+
+      - name: Verify cluster connection
+        run: |
+          kubectl cluster-info --request-timeout=15s
+          kubectl get nodes --request-timeout=15s
+
+      - name: Create namespace
+        run: |
+          NAMESPACE="${{ secrets.HELM_NAMESPACE || 'personal-site' }}"
+          kubectl create namespace "${NAMESPACE}" --dry-run=client -o yaml | kubectl apply -f -
+
+      - name: Lint Helm chart
+        run: helm lint deploy/helm/personal-site
+
+      - name: Prepare Helm values
+        run: |
+          if [ -n "${{ secrets.HELM_VALUES_B64 }}" ]; then
+            echo "${{ secrets.HELM_VALUES_B64 }}" | base64 -d > /tmp/custom-values.yaml
+            echo "Custom values file prepared"
+          fi
+
+      - name: Deploy with Helm
+        run: |
+          RELEASE="${{ secrets.HELM_RELEASE_NAME || 'personal-site' }}"
+          NAMESPACE="${{ secrets.HELM_NAMESPACE || 'personal-site' }}"
+          IMAGE_TAG="${{ steps.image-tag.outputs.tag }}"
+
+          HELM_CMD="helm upgrade --install ${RELEASE} deploy/helm/personal-site \
+            --namespace ${NAMESPACE} \
+            --set image.tag=${IMAGE_TAG} \
+            --wait \
+            --timeout 5m \
+            --atomic"
+
+          if [ -f /tmp/custom-values.yaml ]; then
+            HELM_CMD="${HELM_CMD} --values /tmp/custom-values.yaml"
+          fi
+
+          echo "Deploying image tag: ${IMAGE_TAG}"
+          eval ${HELM_CMD}
+
+      - name: Verify deployment
+        run: |
+          RELEASE="${{ secrets.HELM_RELEASE_NAME || 'personal-site' }}"
+          NAMESPACE="${{ secrets.HELM_NAMESPACE || 'personal-site' }}"
+
+          kubectl rollout status deployment/${RELEASE} -n ${NAMESPACE} --timeout=120s
+          echo "---"
+          kubectl get deployment,pods,svc,ingress -n ${NAMESPACE} -l app.kubernetes.io/instance=${RELEASE}
+
+      - name: Cleanup
+        if: always()
+        run: |
+          if [ -n "${SSH_PID}" ]; then
+            kill ${SSH_PID} 2>/dev/null || true
+          fi
+          rm -f ~/.ssh/deploy_key
+          rm -f ~/.kube/config

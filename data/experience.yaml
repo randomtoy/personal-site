@@ -1,0 +1,47 @@
+- period: "2022 — Present"
+  role: "Senior DevOps / SRE Engineer"
+  company: "Company Name"
+  companyUrl: ""
+  description:
+    - "Architected and maintained Kubernetes clusters (k8s/k3s) serving production workloads with 99.9% uptime SLA across multiple environments."
+    - "Designed CI/CD pipelines using GitHub Actions and GitLab CI, reducing deployment time by 60% and enabling teams to ship multiple times per day."
+    - "Implemented comprehensive observability stack (Prometheus, Grafana, Loki, AlertManager) providing full visibility into infrastructure and application health."
+  tags:
+    - Kubernetes
+    - Terraform
+    - GitHub Actions
+    - Prometheus
+    - Grafana
+    - AWS
+
+- period: "2019 — 2022"
+  role: "DevOps Engineer"
+  company: "Company Name"
+  companyUrl: ""
+  description:
+    - "Managed KVM/QEMU virtualization infrastructure supporting GPU-accelerated workloads for ML/AI teams."
+    - "Automated infrastructure provisioning with Terraform and Ansible, reducing environment setup time from days to minutes."
+    - "Built and maintained Docker-based development environments and container registries for 50+ developers."
+  tags:
+    - KVM/QEMU
+    - Docker
+    - Ansible
+    - Terraform
+    - Linux
+    - GitLab CI
+
+- period: "2017 — 2019"
+  role: "Systems Administrator"
+  company: "Company Name"
+  companyUrl: ""
+  description:
+    - "Administered Linux server fleet (Ubuntu/CentOS) with configuration management via Ansible."
+    - "Implemented monitoring and alerting solutions, reducing incident response time by 40%."
+    - "Migrated legacy deployment processes to containerized workflows using Docker Compose."
+  tags:
+    - Linux
+    - Ansible
+    - Docker
+    - Nginx
+    - Bash
+    - Monitoring

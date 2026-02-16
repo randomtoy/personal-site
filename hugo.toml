@@ -1,0 +1,23 @@
+baseURL = "https://example.com/"
+languageCode = "en-us"
+title = "Yuri Sergeev — DevOps / SRE Engineer"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  description = "Personal website of Yuri Sergeev — DevOps / SRE Engineer specializing in Kubernetes, virtualization, CI/CD and infrastructure automation."
+  author = "Yuri Sergeev"
+  ogImage = "/images/og-image.png"
+
+[build]
+  [build.buildStats]
+    enable = true
+
+[module]
+  [module.hugoVersion]
+    extended = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

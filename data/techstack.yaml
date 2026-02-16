@@ -1,0 +1,51 @@
+- category: "Cloud & Infrastructure"
+  items:
+    - AWS
+    - GCP
+    - DigitalOcean
+    - Hetzner
+    - Bare Metal
+
+- category: "Containers & Orchestration"
+  items:
+    - Docker
+    - Kubernetes
+    - k3s
+    - Helm
+    - Containerd
+
+- category: "Infrastructure as Code"
+  items:
+    - Terraform
+    - Ansible
+    - Pulumi
+    - CloudFormation
+
+- category: "CI/CD"
+  items:
+    - GitHub Actions
+    - GitLab CI
+    - ArgoCD
+    - Flux
+
+- category: "Observability"
+  items:
+    - Prometheus
+    - Grafana
+    - Loki
+    - AlertManager
+    - Jaeger
+
+- category: "Virtualization"
+  items:
+    - KVM/QEMU
+    - libvirt
+    - GPU Passthrough
+    - Proxmox
+
+- category: "Languages & Scripting"
+  items:
+    - Go
+    - Python
+    - Bash
+    - YAML/HCL
