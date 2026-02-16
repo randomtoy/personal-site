@@ -132,20 +132,17 @@ jobs:
             echo "Custom values file prepared"
           fi
 
-      - name: Adopt existing resources
+      - name: Adopt or clean pre-existing resources
         run: |
           RELEASE="${{ vars.HELM_RELEASE_NAME || 'personal-site' }}"
           NAMESPACE="${{ vars.HELM_NAMESPACE || 'personal-site' }}"
-          for kind in certificate; do
-            for name in $(kubectl get ${kind} -n ${NAMESPACE} -o name 2>/dev/null || true); do
-              echo "Adopting ${name} for Helm release ${RELEASE}"
-              kubectl annotate ${name} -n ${NAMESPACE} \
-                meta.helm.sh/release-name=${RELEASE} \
-                meta.helm.sh/release-namespace=${NAMESPACE} --overwrite
-              kubectl label ${name} -n ${NAMESPACE} \
-                app.kubernetes.io/managed-by=Helm --overwrite
-            done
-          done
+          # Check if this is a fresh install (no existing Helm release)
+          if ! helm status ${RELEASE} -n ${NAMESPACE} >/dev/null 2>&1; then
+            echo "Fresh install detected — removing pre-existing resources that Helm will manage"
+            kubectl delete certificate ${RELEASE}-tls -n ${NAMESPACE} 2>/dev/null && echo "Deleted existing certificate" || echo "No existing certificate"
+          else
+            echo "Existing Helm release found — upgrade will handle resources"
+          fi
 
       - name: Deploy with Helm
         run: |
