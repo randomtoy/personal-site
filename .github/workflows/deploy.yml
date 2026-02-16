@@ -132,6 +132,21 @@ jobs:
             echo "Custom values file prepared"
           fi
 
+      - name: Adopt existing resources
+        run: |
+          RELEASE="${{ vars.HELM_RELEASE_NAME || 'personal-site' }}"
+          NAMESPACE="${{ vars.HELM_NAMESPACE || 'personal-site' }}"
+          for kind in certificate; do
+            for name in $(kubectl get ${kind} -n ${NAMESPACE} -o name 2>/dev/null || true); do
+              echo "Adopting ${name} for Helm release ${RELEASE}"
+              kubectl annotate ${name} -n ${NAMESPACE} \
+                meta.helm.sh/release-name=${RELEASE} \
+                meta.helm.sh/release-namespace=${NAMESPACE} --overwrite
+              kubectl label ${name} -n ${NAMESPACE} \
+                app.kubernetes.io/managed-by=Helm --overwrite
+            done
+          done
+
       - name: Deploy with Helm
         run: |
           RELEASE="${{ vars.HELM_RELEASE_NAME || 'personal-site' }}"
