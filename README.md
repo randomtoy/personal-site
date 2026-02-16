@@ -146,14 +146,14 @@ Create a `custom-values.yaml`:
 ```yaml
 ingress:
   hosts:
-    - host: your-domain.com
+    - host: randomtoy.dev
       paths:
         - path: /
           pathType: Prefix
   tls:
-    - secretName: your-tls-secret
+    - secretName: personal-site-tls
       hosts:
-        - your-domain.com
+        - randomtoy.dev
 ```
 
 Encode and set as secret:

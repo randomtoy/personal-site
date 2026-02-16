@@ -14,7 +14,7 @@ summary: >-
 links:
   github: "https://github.com/randomtoy"  # UPDATE: your GitHub username
   linkedin: "https://linkedin.com/in/your-profile"  # UPDATE: your LinkedIn URL
-  email: "hello@example.com"  # UPDATE: your contact email
+  email: "hello@randomtoy.dev"
 
 contact:
   formEndpoint: ""  # Set to Formspree or similar endpoint, e.g. "https://formspree.io/f/xxxxx"

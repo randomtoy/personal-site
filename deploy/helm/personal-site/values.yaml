@@ -16,15 +16,20 @@ ingress:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.tls: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
   hosts:
-    - host: yurisergeev.com
+    - host: randomtoy.dev
       paths:
         - path: /
           pathType: Prefix
   tls:
     - secretName: personal-site-tls
       hosts:
-        - yurisergeev.com
+        - randomtoy.dev
+
+certManager:
+  enabled: true
+  clusterIssuer: letsencrypt-prod
 
 resources:
   requests:
