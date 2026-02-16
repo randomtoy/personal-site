@@ -27,10 +27,6 @@ ingress:
       hosts:
         - randomtoy.dev
 
-certManager:
-  enabled: true
-  clusterIssuer: letsencrypt-prod
-
 resources:
   requests:
     cpu: 50m
