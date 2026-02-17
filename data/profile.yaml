@@ -1,23 +1,23 @@
 name: "Yuri Sergeev"
-role: "DevOps / SRE Engineer"
+role: "Site Reliability Engineer"
 badge: "Available for opportunities"
 description: >-
-  Experienced DevOps and SRE Engineer specializing in cloud infrastructure,
-  Kubernetes orchestration, and building reliable CI/CD pipelines. Passionate
-  about virtualization (KVM/QEMU), GPU computing, and infrastructure automation
-  at scale.
+  Site Reliability Engineer with 17+ years of experience in infrastructure
+  and operations. Specializing in virtualization (including GPU workloads),
+  cloud infrastructure automation, Windows/Linux environments, observability,
+  and performance optimization.
 summary: >-
-  I design and operate production infrastructure with a focus on reliability,
-  observability, and developer experience. From bare-metal GPU clusters to
-  cloud-native microservices — I build systems that scale.
+  I dig into root causes, automate the routine, and make systems faster and
+  more stable. From GPU-accelerated virtual machines to Kubernetes
+  microservices — I build infrastructure that runs reliably at scale.
 
 links:
   github: "https://github.com/randomtoy"  # UPDATE: your GitHub username
-  linkedin: "https://linkedin.com/in/your-profile"  # UPDATE: your LinkedIn URL
-  email: "hello@randomtoy.dev"
+  linkedin: "https://www.linkedin.com/in/yuri-sergeev"  # UPDATE: your LinkedIn URL
+  email: "randomtoy@gmail.com"
 
 contact:
-  formEndpoint: ""  # Set to Formspree or similar endpoint, e.g. "https://formspree.io/f/xxxxx"
+  formEndpoint: "https://formspree.io/f/xbdayvav"  # Set to Formspree or similar endpoint, e.g. "https://formspree.io/f/xxxxx"
   heading: "Get In Touch"
   description: >-
     Have a project in mind or want to discuss infrastructure challenges?

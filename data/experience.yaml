@@ -1,47 +1,66 @@
-- period: "2022 — Present"
-  role: "Senior DevOps / SRE Engineer"
-  company: "Company Name"
+- period: "2023 — Present"
+  role: "Site Reliability Engineer"
+  company: "Yandex"
+  companyUrl: "https://yandex.com"
+  description:
+    - "Improved update download speed ~3x by optimizing internal caching and network layer, reducing user session startup time."
+    - "Migrated GPU virtual machines to a new architecture and driver branch, ensuring seamless user transition and improved VM performance."
+    - "Reduced user disk mount time from 5-7 seconds to ~0.5 seconds by switching to Windows system APIs, eliminating backend service timeouts."
+    - "Automated integration and updates of external gaming platforms, cutting manual operations and accelerating new game releases to production."
+    - "Reduced infrastructure error rate on backend from thousands per day to zero by analyzing Windows interactions and golden image build process."
+    - "Standardized release processes and documentation (including game documentation generation), simplifying onboarding of new projects."
+    - "Mentored new team members, conducted onboarding sessions and technical knowledge-sharing meetings."
+  tags:
+    - Windows
+    - GPU Virtualization
+    - SaltStack
+    - Monitoring
+    - Go
+    - PowerShell
+
+- period: "2022 — 2023"
+  role: "DevOps Engineer"
+  company: "Diginavis"
   companyUrl: ""
   description:
-    - "Architected and maintained Kubernetes clusters (k8s/k3s) serving production workloads with 99.9% uptime SLA across multiple environments."
-    - "Designed CI/CD pipelines using GitHub Actions and GitLab CI, reducing deployment time by 60% and enabling teams to ship multiple times per day."
-    - "Implemented comprehensive observability stack (Prometheus, Grafana, Loki, AlertManager) providing full visibility into infrastructure and application health."
+    - "Automated CI/CD processes in a Kubernetes environment, ensuring stable delivery of microservices in cloud infrastructure."
+    - "Implemented observability stack including metrics, alerting, and centralized logging."
+    - "Automated building and releasing of containerized services."
   tags:
     - Kubernetes
-    - Terraform
-    - GitHub Actions
+    - Docker
+    - CI/CD
     - Prometheus
     - Grafana
-    - AWS
+    - Helm
 
 - period: "2019 — 2022"
-  role: "DevOps Engineer"
-  company: "Company Name"
+  role: "Infrastructure Engineer"
+  company: "Loudplay"
   companyUrl: ""
   description:
-    - "Managed KVM/QEMU virtualization infrastructure supporting GPU-accelerated workloads for ML/AI teams."
-    - "Automated infrastructure provisioning with Terraform and Ansible, reducing environment setup time from days to minutes."
-    - "Built and maintained Docker-based development environments and container registries for 50+ developers."
+    - "Optimized GPU-accelerated virtualization infrastructure (KVM, XenServer) for cloud gaming workloads."
+    - "Implemented vGPU configurations for gaming virtual machines, improving resource utilization and performance."
+    - "Built monitoring solutions and improved service resilience across the platform."
+    - "Conducted R&D on performance optimization and cloud environment integration."
   tags:
-    - KVM/QEMU
-    - Docker
-    - Ansible
-    - Terraform
+    - KVM
+    - XenServer
+    - vGPU
     - Linux
-    - GitLab CI
-
-- period: "2017 — 2019"
-  role: "Systems Administrator"
-  company: "Company Name"
-  companyUrl: ""
-  description:
-    - "Administered Linux server fleet (Ubuntu/CentOS) with configuration management via Ansible."
-    - "Implemented monitoring and alerting solutions, reducing incident response time by 40%."
-    - "Migrated legacy deployment processes to containerized workflows using Docker Compose."
-  tags:
-    - Linux
-    - Ansible
-    - Docker
-    - Nginx
-    - Bash
     - Monitoring
+
+- period: "2006 — 2019"
+  role: "Systems & Network Administrator"
+  company: "Various Companies"
+  companyUrl: ""
+  description:
+    - "System and network administration: Linux, Windows Server, Active Directory, DNS/DHCP, Hyper-V, VDI."
+    - "Network engineering with Mikrotik (MTCNA, MTCRE certified), IPSec/L2TP VPN tunnels."
+    - "Infrastructure monitoring, capacity planning, and incident response."
+  tags:
+    - Linux
+    - Windows Server
+    - Active Directory
+    - Mikrotik
+    - Hyper-V

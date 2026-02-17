@@ -1,6 +1,6 @@
 - name: "RadioMap"
   description: "Full-stack web application for mapping and discovering radio stations worldwide. Backend API with geospatial search, real-time streaming metadata, and an interactive frontend map interface."
-  repo: "https://github.com/randomtoy/radiomap-backend"
+  repo: "https://radiomap.randomtoy.dev"
   demo: ""
   tags:
     - Go
@@ -9,16 +9,6 @@
     - REST API
     - Docker
     - React
-
-- name: "koshabot-go"
-  description: "Telegram bot written in Go for automated household management and task tracking. Features scheduling, reminders, and multi-user support with persistent storage."
-  repo: "https://github.com/randomtoy/koshabot-go"
-  demo: ""
-  tags:
-    - Go
-    - Telegram API
-    - SQLite
-    - Docker
 
 - name: "badgesgenerator"
   description: "Service for dynamically generating custom SVG badges for README files and documentation. Supports various styles, colors, and real-time data sources."
@@ -48,12 +38,3 @@
     - REST API
     - Docker
     - Kubernetes
-
-- name: "Personal Site"
-  description: "This very website — a single-page portfolio built with Hugo and TailwindCSS. Statically generated, deployed via GitHub Actions to GitHub Pages."
-  repo: "https://github.com/randomtoy/personal-site"
-  demo: ""
-  tags:
-    - Hugo
-    - TailwindCSS
-    - GitHub Actions

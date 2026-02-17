@@ -1,45 +1,61 @@
-- name: "radiomap-backend"
-  description: "Backend API for RadioMap — geospatial radio station discovery service."
-  url: "https://github.com/randomtoy/radiomap-backend"
-  language: "Go"
-  languageColor: "#00ADD8"
-  stars: 0
-  forks: 0
-
 - name: "radiobrowser-go"
-  description: "Go client library for the RadioBrowser community API."
+  description: "Go client library for the RadioBrowser community API — typed access to search, filtering, and station metadata."
   url: "https://github.com/randomtoy/radiobrowser-go"
   language: "Go"
   languageColor: "#00ADD8"
-  stars: 0
+  stars: 5
   forks: 0
 
-- name: "koshabot-go"
-  description: "Telegram bot for household management and task automation."
-  url: "https://github.com/randomtoy/koshabot-go"
+- name: "powershell-steamhelper"
+  description: "PowerShell toolkit for automating Steam platform operations — useful for cloud gaming infrastructure management."
+  url: "https://github.com/randomtoy/powershell-steamhelper"
+  language: "PowerShell"
+  languageColor: "#012456"
+  stars: 6
+  forks: 0
+
+- name: "terraform-yandex-cloud"
+  description: "Terraform modules and examples for provisioning infrastructure on Yandex Cloud."
+  url: "https://github.com/randomtoy/terraform-yandex-cloud"
+  language: "HCL"
+  languageColor: "#844FBA"
+  stars: 1
+  forks: 0
+
+- name: "pulumi-yandex-cloud"
+  description: "Infrastructure as Code for Yandex Cloud using Pulumi and Go."
+  url: "https://github.com/randomtoy/pulumi-yandex-cloud"
   language: "Go"
   languageColor: "#00ADD8"
-  stars: 0
+  stars: 1
   forks: 0
 
 - name: "badgesgenerator"
-  description: "Dynamic SVG badge generation service for documentation."
+  description: "Visitors badge generation service — dynamic SVG badges for README files and documentation."
   url: "https://github.com/randomtoy/badgesgenerator"
   language: "Go"
   languageColor: "#00ADD8"
-  stars: 0
+  stars: 1
   forks: 0
 
-- name: "magic-ball-as-a-service"
-  description: "Magic 8-Ball predictions via REST API — cloud-native demo."
-  url: "https://github.com/randomtoy/magic-ball-as-a-service"
+- name: "go-8ball"
+  description: "Magic 8-Ball predictions via HTTP — lightweight Go microservice for cloud-native deployment demos."
+  url: "https://github.com/randomtoy/go-8ball"
+  language: "Go"
+  languageColor: "#00ADD8"
+  stars: 1
+  forks: 0
+
+- name: "taas-go"
+  description: "Tarot-as-a-Service — fun Go microservice serving tarot card readings via API."
+  url: "https://github.com/randomtoy/taas-go"
   language: "Go"
   languageColor: "#00ADD8"
   stars: 0
   forks: 0
 
 - name: "personal-site"
-  description: "This portfolio website — Hugo + TailwindCSS, deployed to GitHub Pages."
+  description: "This portfolio website — Hugo + TailwindCSS, deployed via GitHub Actions."
   url: "https://github.com/randomtoy/personal-site"
   language: "HTML"
   languageColor: "#e34c26"
