@@ -1,7 +1,7 @@
 - period: "2023 — Present"
   role: "Site Reliability Engineer"
   company: "Yandex"
-  companyUrl: "https://yandex.com"
+  companyUrl: "https://plusgaming.yandex.ru"
   description:
     - "Improved update download speed ~3x by optimizing internal caching and network layer, reducing user session startup time."
     - "Migrated GPU virtual machines to a new architecture and driver branch, ensuring seamless user transition and improved VM performance."
@@ -21,7 +21,7 @@
 - period: "2022 — 2023"
   role: "DevOps Engineer"
   company: "Diginavis"
-  companyUrl: ""
+  companyUrl: "https://diginavis.com"
   description:
     - "Automated CI/CD processes in a Kubernetes environment, ensuring stable delivery of microservices in cloud infrastructure."
     - "Implemented observability stack including metrics, alerting, and centralized logging."
@@ -37,7 +37,7 @@
 - period: "2019 — 2022"
   role: "Infrastructure Engineer"
   company: "Loudplay"
-  companyUrl: ""
+  companyUrl: "https://loudplay.io"
   description:
     - "Optimized GPU-accelerated virtualization infrastructure (KVM, XenServer) for cloud gaming workloads."
     - "Implemented vGPU configurations for gaming virtual machines, improving resource utilization and performance."
